@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Contact Card!</title>
+		<link rel="stylesheet" type="text/css" href="contact.css">
+		<meta charset="utf-8">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+			<script type="text/javascript">
+				
+				$(document).ready(function(){
+
+					$('form').submit(function(){
+						var tempName = $("form input[name = firstName]").val() + " " + $("form input[name = lastName]").val();
+						var tempDesc = $("form textarea[name = description]").val();
+						console.log(tempName);
+						console.log(tempDesc);
+						$("#cardDisplay").append("<div class='contactCard'>" + '<h2>'+tempName+'</h2>'+"<h3>"+tempDesc+"</h3>" + "<p>Click here for a Description!</p>" + "</div>");
+						return false;
+					});
+
+				});
+
+				$(document).on( "click", ".contactCard", function(){
+					if($(this).children('h3').css("display") == "none")
+					{
+						$(this).children().hide();
+						console.log("its hidden");
+						$(this).children('h3').css("display", "block");
+
+					}
+					else if($(this).children('h3').css("display") == "block")
+					{
+						console.log("its showing");
+						$(this).children().show();
+						$(this).children('h3').css("display", "none");
+
+					}
+
+				});
+
+			</script>
+	</head>
+	<body>
+		<div id="formBox">
+			<h1>New User Entry!</h1>
+			<form>
+				<input type="text" name="firstName" placeholder="First name">
+				<input type="text" name="lastName" placeholder="Last Name">
+				<textarea rows="9" cols="50" name="description" placeholder="Tell me about yourself"></textarea>
+				<input type="submit" name="submit" id="submitButton">
+			</form>
+		</div>
+		<div id="cardDisplay">
+	
+		</div>
+	</body>
+</html>
